@@ -18,29 +18,37 @@ void ed_message(int, string);
 // int continue_choice();
 
 int main () {
+
     int ed_choice, cipher_choice, conti = 0;
-    string input, output;
+    string input = "", output = "";
+
     cout << "*******Welcome to CrptoPad*******\n";
     cout << "\nSelect to encrypt or decrypt a message :";
     cout << "\n1.Encrypt a message.";
     cout << "\n2.Decrypt a message.";
     cout << "\nYour Choice : ";
     cin >> ed_choice;
-    (ed_choice == 1) ? cout << "Select the cipher to encrypt\n" : (ed_choice == 2) ? cout << "Select the cipher to decrypt\n" : cout << "\n";
 
-    while (ed_choice < 1 || ed_choice > 2) {
+    if (ed_choice == 1)
+        cout << "Select the cipher to encrypt.\n";
+    else if (ed_choice == 2) 
+        cout << "Select the cipher to decrypt.\n";
+    else {
+        while (ed_choice < 1 || ed_choice > 2) {
         cout << "Enter a valid choice!";
         cout << "\nYour Choice : ";
         cin >> ed_choice;
+        }
     }
 
     do {
         cout << "1.Qwerty\n2.Rot13\n3.Caeser\n4.Affine\n5.Exit";
         cout << "\nEnter your choice : ";
         cin >> cipher_choice;
+        cin.ignore();
         if (cipher_choice > 0 && cipher_choice < 5) {
             cout << "Enter your message : ";
-            cin >> input;
+            getline(cin, input);
         }
         switch (cipher_choice) {
             case 1:
@@ -86,7 +94,6 @@ void ed_message(int choice, string output) {
         cout << "\nDecryption Successful!";
         cout << "\nYour Decrypted Message : " << output << endl;
     }
-    
     return;
 }
 
